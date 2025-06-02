@@ -9,6 +9,7 @@ import { TextGenerateEffect } from "@/components/ui/text-generate-effect"
 import { SparklesCore } from "@/components/ui/sparkles"
 import { FloatingDock } from "@/components/ui/floating-dock"
 import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu"
+import Image from 'next/image'
 import { Timeline } from "@/components/ui/timeline"
 import { cn } from "@/lib/utils"
 import { Github, Linkedin, Mail, Code, Brain, Zap, BookOpen, ExternalLink, Download, MapPin, Calendar } from "lucide-react"
@@ -439,11 +440,12 @@ export default function RaghuPortfolioHomepage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   
                   {/* Replace this div with your actual image */}
-                  <img 
+                  <Image 
                     src="/Raghu.jpg" 
                     alt="Raghu Nandan - AI Developer" 
                     className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
                   />
+                  
                   
                   {/* Professional Badge */}
                   <div className="absolute bottom-6 left-6 right-6">
