@@ -27,22 +27,23 @@ export const TypewriterEffect = ({
   const [scope, animate] = useAnimate();
   const isInView = useInView(scope);
   useEffect(() => {
-    if (isInView) {
-      animate(
-        "span",
-        {
-          display: "inline-block",
-          opacity: 1,
-          width: "fit-content",
-        },
-        {
-          duration: 0.3,
-          delay: stagger(0.1),
-          ease: "easeInOut",
-        }
-      );
-    }
-  }, [isInView]);
+  if (isInView) {
+    animate(
+      "span",
+      {
+        display: "inline-block",
+        opacity: 1,
+        width: "fit-content",
+      },
+      {
+        duration: 0.3,
+        delay: stagger(0.1),
+        ease: "easeInOut",
+      }
+    );
+  }
+}, [animate, isInView]);
+
 
   const renderWords = () => {
     return (
