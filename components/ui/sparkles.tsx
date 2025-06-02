@@ -1,436 +1,126 @@
 "use client";
-import React, { useId } from "react";
-import { useEffect, useState } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import type { Container, SingleOrMultiple } from "@tsparticles/engine";
-import { loadSlim } from "@tsparticles/slim";
-import { cn } from "@/lib/utils";
-import { motion, useAnimation } from "motion/react";
+import React from "react";
+import { motion } from "motion/react";
+import Image from 'next/image';
 
-type ParticlesProps = {
-  id?: string;
-  className?: string;
-  background?: string;
-  particleSize?: number;
-  minSize?: number;
-  maxSize?: number;
-  speed?: number;
-  particleColor?: string;
-  particleDensity?: number;
+
+
+const transition = {
+  type: "spring",
+  mass: 0.5,
+  damping: 11.5,
+  stiffness: 100,
+  restDelta: 0.001,
+  restSpeed: 0.001,
 };
-export const SparklesCore = (props: ParticlesProps) => {
-  const {
-    id,
-    className,
-    background,
-    minSize,
-    maxSize,
-    speed,
-    particleColor,
-    particleDensity,
-  } = props;
-  const [init, setInit] = useState(false);
-  useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
-  const controls = useAnimation();
 
-  const particlesLoaded = async (container?: Container) => {
-    if (container) {
-      controls.start({
-        opacity: 1,
-        transition: {
-          duration: 1,
-        },
-      });
-    }
-  };
-
-  const generatedId = useId();
+export const MenuItem = ({
+  setActive,
+  active,
+  item,
+  children,
+}: {
+  setActive: (item: string) => void;
+  active: string | null;
+  item: string;
+  children?: React.ReactNode;
+}) => {
   return (
-    <motion.div animate={controls} className={cn("opacity-0", className)}>
-      {init && (
-        <Particles
-          id={id || generatedId}
-          className={cn("h-full w-full")}
-          particlesLoaded={particlesLoaded}
-          options={{
-            background: {
-              color: {
-                value: background || "#0d47a1",
-              },
-            },
-            fullScreen: {
-              enable: false,
-              zIndex: 1,
-            },
-
-            fpsLimit: 120,
-            interactivity: {
-              events: {
-                onClick: {
-                  enable: true,
-                  mode: "push",
-                },
-                onHover: {
-                  enable: false,
-                  mode: "repulse",
-                },
-resize: {
-  enable: true,
-}
-              },
-              modes: {
-                push: {
-                  quantity: 4,
-                },
-                repulse: {
-                  distance: 200,
-                  duration: 0.4,
-                },
-              },
-            },
-            particles: {
-              bounce: {
-                horizontal: {
-                  value: 1,
-                },
-                vertical: {
-                  value: 1,
-                },
-              },
-              collisions: {
-                absorb: {
-                  speed: 2,
-                },
-                bounce: {
-                  horizontal: {
-                    value: 1,
-                  },
-                  vertical: {
-                    value: 1,
-                  },
-                },
-                enable: false,
-                maxSpeed: 50,
-                mode: "bounce",
-                overlap: {
-                  enable: true,
-                  retries: 0,
-                },
-              },
-              color: {
-                value: particleColor || "#ffffff",
-                animation: {
-                  h: {
-                    count: 0,
-                    enable: false,
-                    speed: 1,
-                    decay: 0,
-                    delay: 0,
-                    sync: true,
-                    offset: 0,
-                  },
-                  s: {
-                    count: 0,
-                    enable: false,
-                    speed: 1,
-                    decay: 0,
-                    delay: 0,
-                    sync: true,
-                    offset: 0,
-                  },
-                  l: {
-                    count: 0,
-                    enable: false,
-                    speed: 1,
-                    decay: 0,
-                    delay: 0,
-                    sync: true,
-                    offset: 0,
-                  },
-                },
-              },
-              effect: {
-                close: true,
-                fill: true,
-                options: {},
-                type: {} as SingleOrMultiple<string> | undefined,
-              },
-              groups: {},
-              move: {
-                angle: {
-                  offset: 0,
-                  value: 90,
-                },
-                attract: {
-                  distance: 200,
-                  enable: false,
-                  rotate: {
-                    x: 3000,
-                    y: 3000,
-                  },
-                },
-                center: {
-                  x: 50,
-                  y: 50,
-                  mode: "percent",
-                  radius: 0,
-                },
-                decay: 0,
-                distance: {},
-                direction: "none",
-                drift: 0,
-                enable: true,
-                gravity: {
-                  acceleration: 9.81,
-                  enable: false,
-                  inverse: false,
-                  maxSpeed: 50,
-                },
-                path: {
-                  clamp: true,
-                  delay: {
-                    value: 0,
-                  },
-                  enable: false,
-                  options: {},
-                },
-                outModes: {
-                  default: "out",
-                },
-                random: false,
-                size: false,
-                speed: {
-                  min: 0.1,
-                  max: 1,
-                },
-                spin: {
-                  acceleration: 0,
-                  enable: false,
-                },
-                straight: false,
-                trail: {
-                  enable: false,
-                  length: 10,
-                  fill: {},
-                },
-                vibrate: false,
-                warp: false,
-              },
-              number: {
-                density: {
-                  enable: true,
-                  width: 400,
-                  height: 400,
-                },
-                limit: {
-                  mode: "delete",
-                  value: 0,
-                },
-                value: particleDensity || 120,
-              },
-              opacity: {
-                value: {
-                  min: 0.1,
-                  max: 1,
-                },
-                animation: {
-                  count: 0,
-                  enable: true,
-                  speed: speed || 4,
-                  decay: 0,
-                  delay: 0,
-                  sync: false,
-                  mode: "auto",
-                  startValue: "random",
-                  destroy: "none",
-                },
-              },
-              reduceDuplicates: false,
-              shadow: {
-                blur: 0,
-                color: {
-                  value: "#000",
-                },
-                enable: false,
-                offset: {
-                  x: 0,
-                  y: 0,
-                },
-              },
-              shape: {
-                close: true,
-                fill: true,
-                options: {},
-                type: "circle",
-              },
-              size: {
-                value: {
-                  min: minSize || 1,
-                  max: maxSize || 3,
-                },
-                animation: {
-                  count: 0,
-                  enable: false,
-                  speed: 5,
-                  decay: 0,
-                  delay: 0,
-                  sync: false,
-                  mode: "auto",
-                  startValue: "random",
-                  destroy: "none",
-                },
-              },
-              stroke: {
-                width: 0,
-              },
-              zIndex: {
-                value: 0,
-                opacityRate: 1,
-                sizeRate: 1,
-                velocityRate: 1,
-              },
-              destroy: {
-                bounds: {},
-                mode: "none",
-                split: {
-                  count: 1,
-                  factor: {
-                    value: 3,
-                  },
-                  rate: {
-                    value: {
-                      min: 4,
-                      max: 9,
-                    },
-                  },
-                  sizeOffset: true,
-                },
-              },
-              roll: {
-                darken: {
-                  enable: false,
-                  value: 0,
-                },
-                enable: false,
-                enlighten: {
-                  enable: false,
-                  value: 0,
-                },
-                mode: "vertical",
-                speed: 25,
-              },
-              tilt: {
-                value: 0,
-                animation: {
-                  enable: false,
-                  speed: 0,
-                  decay: 0,
-                  sync: false,
-                },
-                direction: "clockwise",
-                enable: false,
-              },
-              twinkle: {
-                lines: {
-                  enable: false,
-                  frequency: 0.05,
-                  opacity: 1,
-                },
-                particles: {
-                  enable: false,
-                  frequency: 0.05,
-                  opacity: 1,
-                },
-              },
-              wobble: {
-                distance: 5,
-                enable: false,
-                speed: {
-                  angle: 50,
-                  move: 10,
-                },
-              },
-              life: {
-                count: 0,
-                delay: {
-                  value: 0,
-                  sync: false,
-                },
-                duration: {
-                  value: 0,
-                  sync: false,
-                },
-              },
-              rotate: {
-                value: 0,
-                animation: {
-                  enable: false,
-                  speed: 0,
-                  decay: 0,
-                  sync: false,
-                },
-                direction: "clockwise",
-                path: false,
-              },
-              orbit: {
-                animation: {
-                  count: 0,
-                  enable: false,
-                  speed: 1,
-                  decay: 0,
-                  delay: 0,
-                  sync: false,
-                },
-                enable: false,
-                opacity: 1,
-                rotation: {
-                  value: 45,
-                },
-                width: 1,
-              },
-              links: {
-                blink: false,
-                color: {
-                  value: "#fff",
-                },
-                consent: false,
-                distance: 100,
-                enable: false,
-                frequency: 1,
-                opacity: 1,
-                shadow: {
-                  blur: 5,
-                  color: {
-                    value: "#000",
-                  },
-                  enable: false,
-                },
-                triangles: {
-                  enable: false,
-                  frequency: 1,
-                },
-                width: 1,
-                warp: false,
-              },
-              repulse: {
-                value: 0,
-                enabled: false,
-                distance: 1,
-                duration: 1,
-                factor: 1,
-                speed: 1,
-              },
-            },
-            detectRetina: true,
-          }}
-        />
+    <div onMouseEnter={() => setActive(item)} className="relative ">
+      <motion.p
+        transition={{ duration: 0.3 }}
+        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white"
+      >
+        {item}
+      </motion.p>
+      {active !== null && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={transition}
+        >
+          {active === item && (
+            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
+              <motion.div
+                transition={transition}
+                layoutId="active" // layoutId ensures smooth animation
+                className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
+              >
+                <motion.div
+                  layout // layout ensures smooth animation
+                  className="w-max h-full p-4"
+                >
+                  {children}
+                </motion.div>
+              </motion.div>
+            </div>
+          )}
+        </motion.div>
       )}
-    </motion.div>
+    </div>
+  );
+};
+
+export const Menu = ({
+  setActive,
+  children,
+}: {
+  setActive: (item: string | null) => void;
+  children: React.ReactNode;
+}) => {
+  return (
+    <nav
+      onMouseLeave={() => setActive(null)} // resets the state
+      className="relative rounded-full border border-transparent dark:bg-black dark:border-white/[0.2] bg-white shadow-input flex justify-center space-x-4 px-8 py-6 "
+    >
+      {children}
+    </nav>
+  );
+};
+
+export const ProductItem = ({
+  title,
+  description,
+  href,
+  src,
+}: {
+  title: string;
+  description: string;
+  href: string;
+  src: string;
+}) => {
+  return (
+    <a href={href} className="flex space-x-2">
+      <Image
+        src={src}
+        width={140}
+        height={70}
+        alt={title}
+        className="shrink-0 rounded-md shadow-2xl"
+      />
+      <div>
+        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
+          {title}
+        </h4>
+        <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">
+          {description}
+        </p>
+      </div>
+    </a>
+  );
+};
+
+interface HoveredLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  children: React.ReactNode;
+}
+
+export const HoveredLink = ({ children, ...rest }: HoveredLinkProps) => {
+  return (
+    <a
+      {...rest}
+      className="text-neutral-300 hover:text-neutral-100 transition-colors"
+    >
+      {children}
+    </a>
   );
 };
