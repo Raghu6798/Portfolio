@@ -440,11 +440,13 @@ export default function RaghuPortfolioHomepage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                   
                   {/* Replace this div with your actual image */}
-                  <Image 
-                    src="/Raghu.jpg" 
-                    alt="Raghu Nandan - AI Developer" 
-                    className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
-                  />
+                  <Image
+  src="/Raghu.jpg"
+  alt="Raghu Nandan - AI Developer"
+  width={500} // Set your desired width
+  height={500} // Set your desired height
+  className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+/>
                   
                   
                   {/* Professional Badge */}
