@@ -18,18 +18,19 @@ export const TextGenerateEffect = ({
   const wordsArray = words.split(" ");
 
   useEffect(() => {
-    animate(
-      "span",
-      {
-        opacity: 1,
-        filter: filter ? "blur(0px)" : "none",
-      },
-      {
-        duration: duration ? duration : 1,
-        delay: stagger(0.2),
-      }
-    );
-  }, [words, duration, filter]); // Use 'words' instead of 'animate' since that's what should trigger re-animation
+  animate(
+    "span",
+    {
+      opacity: 1,
+      filter: filter ? "blur(0px)" : "none",
+    },
+    {
+      duration: duration || 1,
+      delay: stagger(0.2),
+    }
+  );
+}, [animate, words, duration, filter]);
+ // Use 'words' instead of 'animate' since that's what should trigger re-animation
 
   const renderWords = () => {
     return (
