@@ -83,7 +83,7 @@ export default function HomeContent() {
                 <ProfileImage 
                   src="/Raghu-removebg-preview.png" 
                   alt="Raghu Nandan" 
-                  size="xl"
+                  size="lg"
                   className="rounded-full shadow-2xl"
                 />
               </div>
