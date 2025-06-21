@@ -81,7 +81,7 @@ export default function HomeContent() {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-full blur-2xl scale-110 animate-pulse" />
               <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-1 rounded-full backdrop-blur-sm border border-white/10">
                 <ProfileImage 
-                  src="/Raghu-removebg-preview.png" 
+                  src="/me.jpg" 
                   alt="Raghu Nandan" 
                   size="lg"
                   className="rounded-full shadow-2xl"
