@@ -7,7 +7,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Raghu Nandan | Generative AI Developer',
+  title: 'Raghu Portfolio',
   description: 'Portfolio of Raghu Nandan, a Generative AI Developer specializing in AI-powered applications',
 };
 

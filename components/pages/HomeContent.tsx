@@ -9,6 +9,7 @@ import { FloatingElements } from "@/components/FloatingElements";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { FlipWords } from "@/components/ui/flip-words";
 import { Cover } from "@/components/ui/cover";
+import RotatingText from "../ui/RotatingText";
 
 export default function HomeContent() {
   const nameWords = [
@@ -81,9 +82,9 @@ export default function HomeContent() {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-full blur-2xl scale-110 animate-pulse" />
               <div className="relative bg-gradient-to-br from-slate-800/50 to-slate-900/50 p-1 rounded-full backdrop-blur-sm border border-white/10">
                 <ProfileImage 
-                  src="/Raghu-removebg-preview.png" 
+                  src="/me.jpg" 
                   alt="Raghu Nandan" 
-                  size="xl"
+                  size="lg"
                   className="rounded-full shadow-2xl"
                 />
               </div>
@@ -117,11 +118,18 @@ export default function HomeContent() {
             className="text-lg md:text-2xl lg:text-3xl text-white/90 font-medium max-w-3xl leading-relaxed"
             variants={itemVariants}
           >
-            Specializing in{" "}
-            <FlipWords
-              words={specializationWords}
-              className="text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text font-bold"
-              duration={2500}
+            Specializing in{' '}
+            <RotatingText
+              texts={specializationWords}
+              mainClassName="whitespace-nowrap bg-cyan-300 text-black py-0.5 sm:py-1 md:py-2 px-2 md:px-3 rounded-lg inline-flex items-center"
+              staggerFrom={"last"}
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-120%" }}
+              staggerDuration={0.025}
+              splitLevelClassName="inline-flex"
+              transition={{ type: "spring", damping: 30, stiffness: 400 }}
+              rotationInterval={2000}
             />
           </motion.div>
 

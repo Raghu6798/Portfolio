@@ -11,11 +11,13 @@ import {
   SiKeras,
   SiStreamlit,
   SiLangchain,
+  SiCplusplus,
 } from 'react-icons/si';
 
 const techStack = [
   { name: 'Python', icon: SiPython },
   { name: 'LangChain', icon: SiLangchain },
+  { name: 'llama.cpp', icon: SiCplusplus },
   { name: 'Pandas', icon: SiPandas },
   { name: 'Streamlit', icon: SiStreamlit },
   { name: 'PyTorch', icon: SiPytorch },
