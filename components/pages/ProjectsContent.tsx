@@ -8,100 +8,31 @@ import { FloatingElements } from '@/components/FloatingElements';
 
 const projects = [
   {
-    title: 'GPT-2 from Scratch',
-    description: 'Built GPT-2 from scratch, implementing the core mechanics of transformer models and language modeling.',
+    title: 'Cortex: AI Agent BaaS',
+    description: 'Provider-agnostic AI agent builder platform for B2B. Features multi-tenant RBAC (Clerk), MCP server registry, WebRTC voice sessions, and secure E2B sandboxed execution.',
+    image: 'portfolio-five-beryl-ompt4e9qtp.vercel.app/cortex.png',
+    tags: ['MCP', 'WebRTC', 'RBAC', 'FastAPI', 'E2B', 'Multi-tenant'],
+    demoLink: 'https://cortexruntime.info',
+  },
+  {
+    title: 'BlitzCoder',
+    description: 'Autonomous CLI Dev Agent built with LangGraph. Features stateful ReAct loops, semantic memory via HuggingFace, and secure shell execution for codebase scaffolding.',
+    image: 'portfolio-five-beryl-ompt4e9qtp.vercel.app/blitzcoder.png',
+    tags: ['Python', 'LangGraph', 'PyPI', 'Gemini 2.0', 'RAG'],
+    demoLink: 'pypi.org/project/blitzcoder/'
+  },
+  {
+    title: 'IANL Agent',
+    description: 'Autonomous Infrastructure-as-Code agent. Transcribes NL requirements and architecture diagrams into production-ready Terraform using Multimodal VLM pipelines.',
+    image: 'portfolio-five-beryl-ompt4e9qtp.vercel.app/IANL.png',
+    tags: ['Terraform', 'AWS', 'LangGraph', 'Pixtral', 'Postgres']
+  },
+  {
+    title: 'DevOps Remediation Agent',
+    description: 'Autonomous agent for production incident remediation. Features custom state management, retry logic, and factory-pattern integration for diverse infra stacks.',
     image: 'https://images.pexels.com/photos/7567440/pexels-photo-7567440.jpeg',
-    tags: ['Transformers', 'NLP', 'PyTorch'],
-    demoLink: '#',
-    codeLink: '#'
-  },
-  {
-    title: 'EduVerseAI',
-    description: 'A Multimodal RAG application for interacting with learning materials like documents, images, and videos. Features a FastAPI backend and a React frontend.',
-    image: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg',
-    tags: ['React', 'FastAPI', 'LangChain', 'Multimodal RAG', 'Qdrant','Supabase','Gemini','Langfuse','Redis','Pydantic'],
-    demoLink: '#',
-    codeLink: '#'
-  },
-  {
-    title: 'Telugu Language Tokenizer',
-    description: 'Custom tokenizer for Telugu, handling complex linguistic morphology and character structures.',
-    image: 'https://images.pexels.com/photos/668298/pexels-photo-668298.jpeg',
-    tags: ['Tokenizer', 'NLP', 'Indic Languages'],
-    demoLink: '#',
-    codeLink: '#'
-  },
-  {
-    title: 'Tool Calling - Deepseek-R1 & Gemini 3',
-    description: 'Integrated tool calling for Deepseek-R1 and Gemini 3 to enable advanced AI toolchains.',
-    image: 'https://images.pexels.com/photos/3861955/pexels-photo-3861955.jpeg',
-    tags: ['Tool Use', 'LLM', 'Gemini', 'Deepseek'],
-    demoLink: '#',
-    codeLink: '#'
-  },
-  {
-    title: 'AI Blog Generator & Agentic Restaurant Bot',
-    description: 'Generated blog summaries and built a conversational AI for automating restaurant bookings.',
-    image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg',
-    tags: ['LangChain', 'Agents', 'NLP', 'Automation'],
-    demoLink: '#',
-    codeLink: '#'
-  },
-  {
-    title: 'Paligemma Vision-Language Model',
-    description: 'Built Paligemma from scratch using SigLip encoder and sigmoid loss, a custom VLM.',
-    image: 'https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg',
-    tags: ['Vision-Language', 'CLIP', 'Sigmoid'],
-    demoLink: '#',
-    codeLink: '#'
-  },
-  {
-    title: 'Custom MCP Server',
-    description: 'Built Model Context Protocol (MCP) server to manage AI model context and model switching.',
-    image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg',
-    tags: ['FastAPI', 'LLM Infra', 'MCP'],
-    demoLink: '#',
-    codeLink: '#'
-  },
-  {
-    title: 'MedScribe Website',
-    description: 'Developed MedScribe.in to generate structured prescriptions from doctor-patient conversations.',
-    image: 'https://images.pexels.com/photos/4225886/pexels-photo-4225886.jpeg',
-    tags: ['Next.js', 'FastAPI', 'Transcription', 'Healthcare AI'],
-    demoLink: '#',
-    codeLink: '#'
-  },
-  {
-    title: 'Sparse Mixture of Experts in GPT-2',
-    description: 'Optimized GPT-2 by replacing dense layers with sparse Mixture of Experts to boost efficiency.',
-    image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg',
-    tags: ['MoE', 'Efficiency', 'Transformers'],
-    demoLink: '#',
-    codeLink: '#'
-  },
-  {
-    title: 'vLLM & BitNet Inference on Laptop',
-    description: 'Ran optimized inference using vLLM and 1-bit BitNet on local hardware.',
-    image: 'https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg',
-    tags: ['BitNet', 'vLLM', 'Inference'],
-    demoLink: '#',
-    codeLink: '#'
-  },
-  {
-    title: 'Medical GraphRAG',
-    description: 'Built a GraphRAG using Neo4j to handle complex medical queries with structured reasoning.',
-    image: 'https://images.pexels.com/photos/7659579/pexels-photo-7659579.jpeg',
-    tags: ['Neo4j', 'RAG', 'Healthcare AI'],
-    demoLink: '#',
-    codeLink: '#'
-  },
-  {
-    title: 'Gemma 3 to GGUF + Object Detection',
-    description: 'Converted Gemma 3 to GGUF and ran object detection via Paligemma + Gemini.',
-    image: 'https://images.pexels.com/photos/920381/pexels-photo-920381.jpeg',
-    tags: ['GGUF', 'Object Detection', 'LLaMA.cpp'],
-    demoLink: '#',
-    codeLink: '#'
+    tags: ['Kubernetes', 'LangGraph', 'Jenkins', 'Prometheus', 'LLMOps'],
+    demoLink: 'https://github.com/Raghu6798/DevOps_Incidence_Remediation_Agent'
   }
 ];
 

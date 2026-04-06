@@ -341,101 +341,6 @@ export default function TechStackContent() {
     return Array.isArray(techs) ? techs : []
   }
 
-  const TechCard = ({ tech, index }: { tech: any; index: number }) => (
-    <motion.div
-      key={tech.name}
-      className={`relative group cursor-pointer ${hoveredTech === tech.name ? "z-20" : "z-10"}`}
-      onMouseEnter={() => setHoveredTech(tech.name)}
-      onMouseLeave={() => setHoveredTech(null)}
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{ scale: 1.05, y: -5 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      <div
-        className={`relative p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 
-        hover:bg-white/20 transition-all duration-300 hover:shadow-2xl hover:border-white/40
-        ${hoveredTech === tech.name ? "animate-pulse" : ""}`}
-      >
-        {/* Floating Particles on Hover */}
-        <AnimatePresence>
-          {hoveredTech === tech.name && (
-            <div className="absolute inset-0 pointer-events-none">
-              {[...Array(8)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-2 h-2 rounded-full"
-                  style={{
-                    backgroundColor: tech.color,
-                    left: `${20 + ((i * 10) % 60)}%`,
-                    top: `${10 + (i % 4) * 20}%`,
-                  }}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{
-                    opacity: [0, 1, 0],
-                    scale: [0, 1.5, 0],
-                    y: [0, -20, 0],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Number.POSITIVE_INFINITY,
-                    delay: i * 0.2,
-                  }}
-                />
-              ))}
-            </div>
-          )}
-        </AnimatePresence>
-
-        <div className="relative z-10 flex flex-col items-center space-y-4">
-          <motion.div
-            className={`w-16 h-16 rounded-xl flex items-center justify-center
-            bg-gradient-to-br from-white/20 to-white/10 group-hover:from-white/30 group-hover:to-white/20
-            transition-all duration-300 shadow-lg`}
-            style={{
-              boxShadow: hoveredTech === tech.name ? `0 0 30px ${tech.color}40` : "none",
-            }}
-            whileHover={{
-              boxShadow: `0 0 40px ${tech.color}60`,
-            }}
-          >
-            <img
-              src={tech.logo || "/placeholder.svg"}
-              alt={tech.name}
-              className={`object-contain filter group-hover:brightness-110 transition-all duration-300 ${tech.name === "CUDA" ? "w-16 h-16" : "w-10 h-10"}`}
-              onError={(e: any) => {
-                e.target.style.display = "none"
-                e.target.nextSibling.style.display = "flex"
-              }}
-            />
-            <div
-              className="hidden w-10 h-10 rounded-lg items-center justify-center text-white font-bold text-lg"
-              style={{ backgroundColor: tech.color }}
-            >
-              {tech.name.charAt(0)}
-            </div>
-          </motion.div>
-          <motion.h3
-            className="text-white font-semibold text-center group-hover:text-cyan-300 transition-colors duration-300"
-            whileHover={{
-              textShadow: `0 0 10px ${tech.color}80`,
-            }}
-          >
-            {tech.name}
-          </motion.h3>
-        </div>
-
-        {/* Glow Effect */}
-        <motion.div
-          className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl`}
-          style={{ backgroundColor: tech.color }}
-          whileHover={{ opacity: 0.3 }}
-        />
-      </div>
-    </motion.div>
-  )
-
   return (
     <>
       {/* Background Effects */}
@@ -525,7 +430,7 @@ export default function TechStackContent() {
               transition={{ duration: 0.4 }}
             >
               {getCurrentTechs().map((tech: any, index: number) => (
-                <TechCard key={tech.name} tech={tech} index={index} />
+                <TechCard key={tech.name} tech={tech} index={index} hoveredTech={hoveredTech} setHoveredTech={setHoveredTech} />
               ))}
             </motion.div>
           </AnimatePresence>
@@ -551,3 +456,101 @@ export default function TechStackContent() {
     </>
   )
 }
+
+import React from "react"
+
+const TechCard = React.memo(({ tech, index, hoveredTech, setHoveredTech }: { tech: any; index: number; hoveredTech: string | null; setHoveredTech: (name: string | null) => void }) => (
+  <motion.div
+    key={tech.name}
+    className={`relative group cursor-pointer ${hoveredTech === tech.name ? "z-20" : "z-10"}`}
+    onMouseEnter={() => setHoveredTech(tech.name)}
+    onMouseLeave={() => setHoveredTech(null)}
+    initial={{ opacity: 0, y: 30 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ delay: index * 0.1, duration: 0.5 }}
+    whileHover={{ scale: 1.05, y: -5 }}
+    whileTap={{ scale: 0.95 }}
+  >
+    <div
+      className={`relative p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 
+      hover:bg-white/20 transition-all duration-300 hover:shadow-2xl hover:border-white/40
+      ${hoveredTech === tech.name ? "animate-pulse" : ""}`}
+    >
+      {/* Floating Particles on Hover */}
+      <AnimatePresence>
+        {hoveredTech === tech.name && (
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-2 h-2 rounded-full"
+                style={{
+                  backgroundColor: tech.color,
+                  left: `${20 + ((i * 10) % 60)}%`,
+                  top: `${10 + (i % 4) * 20}%`,
+                }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{
+                  opacity: [0, 1, 0],
+                  scale: [0, 1.5, 0],
+                  y: [0, -20, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Number.POSITIVE_INFINITY,
+                  delay: i * 0.2,
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </AnimatePresence>
+
+      <div className="relative z-10 flex flex-col items-center space-y-4">
+        <motion.div
+          className={`w-16 h-16 rounded-xl flex items-center justify-center
+          bg-gradient-to-br from-white/20 to-white/10 group-hover:from-white/30 group-hover:to-white/20
+          transition-all duration-300 shadow-lg`}
+          style={{
+            boxShadow: hoveredTech === tech.name ? `0 0 30px ${tech.color}40` : "none",
+          }}
+          whileHover={{
+            boxShadow: `0 0 40px ${tech.color}60`,
+          }}
+        >
+          <img
+            src={tech.logo || "/placeholder.svg"}
+            alt={tech.name}
+            className={`object-contain filter group-hover:brightness-110 transition-all duration-300 ${tech.name === "CUDA" ? "w-16 h-16" : "w-10 h-10"}`}
+            onError={(e: any) => {
+              e.target.style.display = "none"
+              e.target.nextSibling.style.display = "flex"
+            }}
+          />
+          <div
+            className="hidden w-10 h-10 rounded-lg items-center justify-center text-white font-bold text-lg"
+            style={{ backgroundColor: tech.color }}
+          >
+            {tech.name.charAt(0)}
+          </div>
+        </motion.div>
+        <motion.h3
+          className="text-white font-semibold text-center group-hover:text-cyan-300 transition-colors duration-300"
+          whileHover={{
+            textShadow: `0 0 10px ${tech.color}80`,
+          }}
+        >
+          {tech.name}
+        </motion.h3>
+      </div>
+
+      {/* Glow Effect */}
+      <motion.div
+        className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-xl`}
+        style={{ backgroundColor: tech.color }}
+        whileHover={{ opacity: 0.3 }}
+      />
+    </div>
+  </motion.div>
+))
+TechCard.displayName = "TechCard"
